@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>URL simplifier</title>
+</head>
+
+<body>
+    <form action="{% url 'simplify_url' %}" method="POST">
+        {% csrf_token %}
+        <div class="outer_wrapper">
+            <div class="wrapper">
+                <input type="checkbox" id="click">
+                <label class="btn-1" for="click">Simplify URL</label>
+                <div class="field">
+                    <input type="url" name="url" placeholder="Enter your long URL">
+                    <label for="click" class="btn-2" id="simplify_button">Simplify</label>
+                </div>
+            </div>
+            <div class="result_field">
+                <a id="result" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="{% static 'simplify.js' %}" async></script>
+</body>
+
+</html>
