@@ -9,9 +9,13 @@ from django.core.validators import URLValidator
 
 from .models import Simplifier
 
-def simplify(url):
+def simplify(url, ip):
+    is_already_exists = Simplifier.objects.filter(original_url=url, ip=ip).exists()
+    if is_already_exists:
+        return Simplifier.objects.get(original_url=url, ip=ip).hash
+
     random_hash = "".join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(7))
-    mapping = Simplifier(original_url=url, hash=random_hash, creation_date= timezone.now())
+    mapping = Simplifier(original_url=url, hash=random_hash, ip=ip, creation_date= timezone.now())
     mapping.save()
     return random_hash
 
@@ -27,7 +31,7 @@ def validate_url(url: str) -> bool:
     except ValidationError:
         return False
 
-def check_url_for_existance(url):
+def check_url_for_existance(url: str) -> bool:
     try:
         requests.get(url).ok
         return True
@@ -39,3 +43,11 @@ def check_url_for_existance(url):
         return False
     except requests.exceptions.RequestException:
         return False
+
+def get_client_ip(request) -> str:
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

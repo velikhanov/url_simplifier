@@ -25,7 +25,8 @@ def simplify_url(request) -> HttpResponse:
         if not response:
             return HttpResponse("Looks like you entered a non-existent URL")
 
-        simplified_url_hash = service.simplify(url)
+        ip = service.get_client_ip(request)
+        simplified_url_hash = service.simplify(url, ip)
         simplified_url = request.build_absolute_uri(reverse("redirect", args=[simplified_url_hash]))
 
         return HttpResponse(simplified_url)
