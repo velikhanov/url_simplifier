@@ -210,6 +210,7 @@ html, body{
   .wrapper .field input::placeholder{
     font-size: 12px;
   }
+
   #result{
     font-size: 13px;
   }
