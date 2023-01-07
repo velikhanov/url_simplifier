@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-html,body{
+html, body{
   display: grid;
   height: 100%;
   place-items: center;
@@ -68,6 +68,7 @@ html,body{
   border-radius: 5px;
   padding: 0 130px 0 15px;
   font-size: 20px;
+  font-weight: bold;
   outline: none;
   box-shadow: 5px 5px 30px rgba(0,0,0,.2);
 }
@@ -116,9 +117,100 @@ html,body{
 }
 #result{
   text-decoration: none;
+  font-weight: bold;
   color: #000;
 }
 #result:hover.content{
   text-decoration: underline;
   text-decoration-color: #000;
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper .btn-1{
+    height: 90%;
+    width: 55%;
+    line-height: 55px;
+    font-size: 20px;
+  }
+
+  .wrapper .field{
+    margin-top: 2.5%;
+  }
+
+  .wrapper .field input{
+    height: 90%;
+    width: 80%;
+    font-size: 18px;
+  }
+
+  .wrapper .field .btn-2{
+    top: 45%;
+    right: 55px;
+    line-height: 30px;
+    height: 30px;
+  }
+  
+  .wrapper .field input::placeholder{
+    font-size: 15px;
+  }
+
+  .result_field.show{
+    margin-left: 40px;
+    width: 320px;
+  }
+
+  .result_field{
+    text-align: center;
+
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .wrapper{
+    width: 300px;
+  }
+
+  .result_field.show{
+    margin-left: 30px;
+    width: 240px;
+  }
+
+  .wrapper .btn-1{
+    height: 80%;
+    width: 50%;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  .wrapper .btn-2{
+    line-height: 55px;
+    font-size: 20px;
+  }
+
+  .wrapper .field .btn-2{
+    top: 40%;
+    height: 25px;
+    right: 40px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 25px;
+  }
+
+  .wrapper .field{
+    margin-top: 5%;
+  }
+
+  .wrapper .field input{
+    height: 80%;
+    width: 80%;
+    font-size: 16px;
+    padding-right: 100px;
+  }
+
+  .wrapper .field input::placeholder{
+    font-size: 12px;
+  }
+  #result{
+    font-size: 13px;
+  }
 }
