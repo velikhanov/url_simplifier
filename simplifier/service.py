@@ -10,8 +10,8 @@ from django.core.validators import URLValidator
 from .models import Simplifier
 
 def simplify(url, ip):
-    is_already_exists = Simplifier.objects.filter(original_url=url, ip=ip).exists()
-    if is_already_exists:
+    already_exists = Simplifier.objects.filter(original_url=url, ip=ip).exists()
+    if already_exists:
         return Simplifier.objects.get(original_url=url, ip=ip).hash
 
     random_hash = "".join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(7))
